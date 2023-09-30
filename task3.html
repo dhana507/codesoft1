@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Calculator</title>
+  <style>
+  h1{
+     position:relative;
+     margin-top:55px;
+     margin-left:570px;
+     font-family:Algerian;
+     font-size:50px;
+     color:#3399ff;
+  }
+   body{
+       background-color:#cc9900;
+   }
+   .grid-con{
+     display:grid;
+     grid-template-columns:65px 65px 65px 65px;
+     grid-column-gap:2px;
+     top:25%;
+     left:40%;
+     position:absolute;
+     width:280px;
+     height:350px;
+     background-color:skyblue;
+     border-radius:8px;
+     border-style:solid;
+     border-color:black;
+   }
+   button{
+     width:65px;
+     height:50px;
+     background-color:lightyellow;
+     border-radius:5px;
+     border-style:solid;
+     font-size:21px;
+     margin:3px 3px 2px 6px;
+  }
+  .item1{
+    grid-column:1/ span 4;
+   }
+   #infield{
+   height:38px;
+   width:260px;
+   margin:7px 7px 1px 7px;
+   background-color:#f2efe6;
+   border-radius:5px;
+   font-size:21px;
+  }
+  </style>
+</head>
+<body>
+   <h1>Calculator</h1>
+   <div class="grid-con">
+   <div class="item1"><input type="text" name="cal" id="infield"></div>
+   <div><button class="btn" value="(">(</button></div>
+   <div><button class="btn" value="ce">CE</button></div>
+   <div><button class="btn" value=")">)</button></div>
+   <div><button class="btn" value="c">C</button></div>
+   <div><button class="btn" value="1">1</button></div>
+   <div><button class="btn" value="2">2</button></div>
+   <div><button class="btn" value="3">3</button></div>
+   <div><button class="btn" value="+">+</button></div>
+   <div><button class="btn" value="4">4</button></div>
+   <div><button class="btn" value="5">5</button></div>
+   <div><button class="btn" value="6">6</button></div>
+   <div><button class="btn" value="-">-</button></div>
+   <div><button class="btn" value="7">7</button></div>
+   <div><button class="btn" value="8">8</button></div>
+   <div><button class="btn" value="9">9</button></div>
+   <div><button class="btn" value="*">*</button></div>
+   <div><button class="btn" value=".">.</button></div>
+   <div><button class="btn" value="0">0</button></div>
+   <div><button class="btn" value="=">=</button></div>
+   <div><button class="btn" value="/">/</button></div>
+   </div>
+   <script>
+    const buttons=document.querySelectorAll(".btn");
+    buttons.forEach(button =>{
+       button.addEventListener("click",()=>myfunction(button));
+   });
+    function myfunction(buton){
+      var text=buton.getAttribute("value");
+      var str=document.getElementById("infield").value;
+      if(text==="ce")
+         str=str.substring(0,str.length-1);
+      else if(text==="c")
+         str=" ";
+      else if(text==="="){
+        try{
+          str=eval(str);
+        }
+        catch(error){
+          str="ERROR"
+        }
+      }
+      else 
+          str=str+text;
+      document.getElementById("infield").value=str;
+   }
+   </script>
+</body>
+</html>
